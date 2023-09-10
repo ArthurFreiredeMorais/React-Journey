@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello React!</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Maybe you wondering why this first page isn't built doing the conventional way such as creating react app in the terminal
+        But in the beggining of the course, we're using the "pure react" to understand more the concepts-->
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- this script above referes to the core react library (components, state and other tools...) -->
+
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- this other script is the react-dom which can render react components into the DOM -->
+
+    <script>
+      function App(){
+        // We're doing a function to update the time every 1000 Millisecond (one second) and displays it on the header
+        const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+
+        React.useEffect(function(){
+          setInterval(function(){
+            setTime(new Date().toLocaleTimeString())
+          }, 1000)
+        }, [] );
+        // creates a header in react basically
+        return React.createElement("header", null, `Hello React! it's ${time}`);
+      }
+      // this const and root render basically does apply the react app onto the div with the id = "root" and renders there
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(React.createElement(App));
+    </script>
+  </body>
+</html>
